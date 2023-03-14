@@ -11,30 +11,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/vocabulary")
 @CrossOrigin(origins = "http://localhost:3000")
 public class VocabularyController {
     @Autowired
     VocabularyServiceImpl vocabularyService;
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     public List<Vocabulary> getVocabulary(){
         return  vocabularyService.getAll();
     }
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<Vocabulary> create(@RequestBody Vocabulary newVocabulary){
         Vocabulary vocabulary = vocabularyService.save(newVocabulary);
         return  new ResponseEntity<>(vocabulary, HttpStatus.CREATED);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public Boolean update(@RequestBody Vocabulary newVocabulary, @PathVariable Long id){
         return vocabularyService.update(newVocabulary, id);
     }
-    @PutMapping("/updateCount/{id}")
+    @PutMapping("/practic/{id}")
     public Boolean counter(@RequestBody Practic practic, @PathVariable Long id){
         return vocabularyService.counter(id,practic);
     }
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         vocabularyService.deleteById(id);
     }
