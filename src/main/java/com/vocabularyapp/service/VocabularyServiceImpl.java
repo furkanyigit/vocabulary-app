@@ -51,12 +51,9 @@ public class VocabularyServiceImpl implements VocabularyService {
 
         Vocabulary dbVocabulary = vocabularyRepository.findById(id).orElse(null);
         if (dbVocabulary != null) {
-            if (practic.getIsEnglish() == true && dbVocabulary.getWordEng().equals(practic.getEntryWord())) {
-                dbVocabulary.setCount(dbVocabulary.getCount() + 1);
-                vocabularyRepository.save(dbVocabulary);
-                return Boolean.TRUE;
-            }
-            else if (practic.getIsEnglish() == false && dbVocabulary.getWord().equals(practic.getEntryWord())) {
+            if (practic.getIsEnglish() == true && dbVocabulary.getWordEng().equalsIgnoreCase(practic.getEntryWord()) ||
+                practic.getIsEnglish() == false && dbVocabulary.getWord().equalsIgnoreCase(practic.getEntryWord()) ) {
+
                 dbVocabulary.setCount(dbVocabulary.getCount() + 1);
                 vocabularyRepository.save(dbVocabulary);
                 return Boolean.TRUE;
