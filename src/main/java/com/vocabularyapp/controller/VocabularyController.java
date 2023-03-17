@@ -1,6 +1,7 @@
 package com.vocabularyapp.controller;
 
 import com.vocabularyapp.entitiy.Vocabulary;
+import com.vocabularyapp.repository.VocabularyRepository;
 import com.vocabularyapp.service.dto.Practic;
 import com.vocabularyapp.service.VocabularyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,17 @@ import java.util.List;
 public class VocabularyController {
     @Autowired
     VocabularyServiceImpl vocabularyService;
+    @Autowired
+    private VocabularyRepository vocabularyRepository;
+
 
     @GetMapping("")
     public List<Vocabulary> getVocabulary(){
         return  vocabularyService.getAll();
+    }
+    @GetMapping("/pageable")
+    public List<Vocabulary> getVocabulary(@RequestParam int page, @RequestParam int size){
+        return vocabularyService.getVocabulary(page,size);
     }
     @PostMapping("")
     public ResponseEntity<Vocabulary> create(@RequestBody Vocabulary newVocabulary){
