@@ -2,7 +2,7 @@ package com.vocabularyapp.service;
 
 
 import com.vocabularyapp.entitiy.Vocabulary;
-import com.vocabularyapp.service.dto.Practic;
+import com.vocabularyapp.service.dto.PracticDto;
 
 import java.util.List;
 
@@ -13,6 +13,6 @@ public interface VocabularyService {
     List<Vocabulary> getAll();
     void deleteById(Long id);
     Boolean update(Vocabulary vocabulary,Long id);
-    Boolean counter(Long id, Practic practic);
+    Boolean counter(Long id, PracticDto practicDto);
 
 }

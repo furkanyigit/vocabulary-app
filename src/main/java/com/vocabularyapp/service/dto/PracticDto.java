@@ -3,7 +3,7 @@ package com.vocabularyapp.service.dto;
 import lombok.Data;
 
 @Data
-public class Practic {
+public class PracticDto {
     Boolean isEnglish;
     String entryWord;
 }

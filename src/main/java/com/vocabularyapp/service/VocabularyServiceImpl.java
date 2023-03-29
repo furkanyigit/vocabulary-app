@@ -2,7 +2,7 @@ package com.vocabularyapp.service;
 
 import com.vocabularyapp.entitiy.Vocabulary;
 import com.vocabularyapp.repository.VocabularyRepository;
-import com.vocabularyapp.service.dto.Practic;
+import com.vocabularyapp.service.dto.PracticDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +47,7 @@ public class VocabularyServiceImpl implements VocabularyService {
     }
 
     @Override
-    public Boolean counter(Long id, Practic practic) {
+    public Boolean counter(Long id, PracticDto practic) {
 
         Vocabulary dbVocabulary = vocabularyRepository.findById(id).orElse(null);
         if (dbVocabulary != null) {

@@ -1,7 +1,7 @@
 package com.vocabularyapp.controller;
 
 import com.vocabularyapp.entitiy.Vocabulary;
-import com.vocabularyapp.service.dto.Practic;
+import com.vocabularyapp.service.dto.PracticDto;
 import com.vocabularyapp.service.VocabularyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,8 +31,8 @@ public class VocabularyController {
         return vocabularyService.update(newVocabulary, id);
     }
     @PutMapping("/practic/{id}")
-    public Boolean counter(@RequestBody Practic practic, @PathVariable Long id){
-        return vocabularyService.counter(id,practic);
+    public Boolean counter(@RequestBody PracticDto practicDto, @PathVariable Long id){
+        return vocabularyService.counter(id, practicDto);
     }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
