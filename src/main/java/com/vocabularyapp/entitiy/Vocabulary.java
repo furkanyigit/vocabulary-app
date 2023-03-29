@@ -23,4 +23,8 @@ public class Vocabulary {
     @Column(name="count")
     private int count;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }
