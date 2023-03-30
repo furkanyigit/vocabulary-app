@@ -22,5 +22,9 @@ public class Vocabulary {
     private String wordEng;
     @Column(name="count")
     private int count;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    public User user;
+
 
 }
