@@ -14,5 +14,6 @@ public interface VocabularyService {
     void deleteById(Long id);
     Boolean update(Vocabulary vocabulary,Long id);
     Boolean counter(Long id, Practic practic);
+    List<Vocabulary> getVocabulary(int no, int size);
 
 }

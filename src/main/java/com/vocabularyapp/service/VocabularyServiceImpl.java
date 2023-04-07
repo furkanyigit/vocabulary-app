@@ -4,6 +4,9 @@ import com.vocabularyapp.entitiy.Vocabulary;
 import com.vocabularyapp.repository.VocabularyRepository;
 import com.vocabularyapp.service.dto.Practic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +19,13 @@ public class VocabularyServiceImpl implements VocabularyService {
     public Vocabulary save(Vocabulary vocabulary) {
         vocabularyRepository.save(vocabulary);
         return vocabulary;
+    }
+
+    @Override
+    public List<Vocabulary> getVocabulary(int no, int size) {
+        Pageable pageable = PageRequest.of(no, size);
+        Page<Vocabulary> vocabularyPage = vocabularyRepository.findAll(pageable);
+        return vocabularyPage.toList();
     }
 
     @Override
