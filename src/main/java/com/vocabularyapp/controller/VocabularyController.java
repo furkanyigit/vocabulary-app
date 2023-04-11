@@ -2,9 +2,10 @@ package com.vocabularyapp.controller;
 
 import com.vocabularyapp.entitiy.Vocabulary;
 import com.vocabularyapp.repository.VocabularyRepository;
-import com.vocabularyapp.service.dto.Practic;
 import com.vocabularyapp.service.VocabularyServiceImpl;
+import com.vocabularyapp.service.dto.Practic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,15 +22,16 @@ public class VocabularyController {
     private VocabularyRepository vocabularyRepository;
 
 
-    @GetMapping("")
+    @GetMapping()
     public List<Vocabulary> getVocabulary(){
         return  vocabularyService.getAll();
     }
     @GetMapping("/pageable")
-    public List<Vocabulary> getVocabulary(@RequestParam int page, @RequestParam int size){
-        return vocabularyService.getVocabulary(page,size);
+    public Page<Vocabulary> getVocabulary(@RequestParam int page, @RequestParam int size, @RequestParam int count1, @RequestParam int count2 ){
+        return vocabularyService.getVocabulary(page,size,count1,count2);
     }
-    @PostMapping("")
+
+    @PostMapping()
     public ResponseEntity<Vocabulary> create(@RequestBody Vocabulary newVocabulary){
         Vocabulary vocabulary = vocabularyService.save(newVocabulary);
         return  new ResponseEntity<>(vocabulary, HttpStatus.CREATED);

@@ -21,11 +21,13 @@ public class VocabularyServiceImpl implements VocabularyService {
         return vocabulary;
     }
 
+
     @Override
-    public List<Vocabulary> getVocabulary(int no, int size) {
+    public Page<Vocabulary> getVocabulary(int no, int size,int count1, int count2) {
         Pageable pageable = PageRequest.of(no, size);
-        Page<Vocabulary> vocabularyPage = vocabularyRepository.findAll(pageable);
-        return vocabularyPage.toList();
+        Page<Vocabulary> vocabularyPage = vocabularyRepository.findAllByCountBetween(count1,count2,pageable);
+        vocabularyPage.getTotalElements();
+        return vocabularyPage;
     }
 
     @Override
@@ -61,8 +63,8 @@ public class VocabularyServiceImpl implements VocabularyService {
 
         Vocabulary dbVocabulary = vocabularyRepository.findById(id).orElse(null);
         if (dbVocabulary != null) {
-            if (practic.getIsEnglish() == true && dbVocabulary.getWordEng().equalsIgnoreCase(practic.getEntryWord()) ||
-                practic.getIsEnglish() == false && dbVocabulary.getWord().equalsIgnoreCase(practic.getEntryWord()) ) {
+            if (practic.getIsEnglish() && dbVocabulary.getWordEng().equalsIgnoreCase(practic.getEntryWord()) ||
+                !practic.getIsEnglish() && dbVocabulary.getWord().equalsIgnoreCase(practic.getEntryWord()) ) {
 
                 dbVocabulary.setCount(dbVocabulary.getCount() + 1);
                 vocabularyRepository.save(dbVocabulary);

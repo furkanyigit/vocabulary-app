@@ -10,16 +10,20 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Vocabulary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
+
     @Column(name="word")
     private String word;
+
     @Column(name="word_eng")
     private String wordEng;
+
     @Column(name="count")
     private int count;
 

@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VocabularyRepository extends JpaRepository<Vocabulary,Long> {
-    Page<Vocabulary> findAll(Pageable pageable);
+    Page<Vocabulary> findAllByCountBetween(Integer minValue, Integer maxValue,Pageable pageable);
 }
